@@ -1,0 +1,56 @@
+OASISFormat:    0.4
+Name:           factory
+Version:        0.0.1
+Synopsis:       OCaml bindings for the Factory library
+Authors:        Benedikt Schmidt <beschmi@gmail.com>
+License:        MIT
+Plugins:        DevFiles (0.4), META (0.4)
+BuildTools:     ocamlbuild
+
+Library factory
+  Path:             lib
+  FindlibName:      factory
+  Modules:          Factory
+  InternalModules:  Ffi_generated, Ffi_generated_types
+  CSources:         ffi_generated_stubs.c
+  CCOpt:            -I $pkg_ctypes_stubs
+  CCLib:            -lfactory
+  ByteOpt:          -warn-error +1..45
+  NativeOpt:        -warn-error +1..45
+  BuildDepends:     factory_bindings
+
+Library factory_bindings
+  Install:          true
+  Path:             bindings
+  Modules:          Ffi_bindings
+  ByteOpt:          -warn-error +1..45
+  NativeOpt:        -warn-error +1..45
+  BuildDepends:     ctypes, ctypes.stubs, ctypes.foreign
+
+Executable ffi_stubgen
+  Install:        false
+  Path:           stubgen
+  MainIs:         ffi_stubgen.ml
+  ByteOpt:        -warn-error +1..45
+  NativeOpt:      -warn-error +1..45
+  BuildDepends:   factory_bindings
+
+Executable ffi_types_stubgen
+  Install:        false
+  Path:           stubgen
+  MainIs:         ffi_types_stubgen.ml
+  ByteOpt:        -warn-error +1..45
+  NativeOpt:      -warn-error +1..45
+  BuildDepends:   factory_bindings
+
+Executable test_factory
+  Install:        false
+  Path:           lib_test
+  MainIs:         test_factory.ml
+  CompiledObject: best
+  ByteOpt:        -warn-error +1..45
+  NativeOpt:      -warn-error +1..45
+  BuildDepends:   factory, oUnit
+
+Test test_factory
+  Command: $test_factory -runner sequential

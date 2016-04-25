@@ -1,0 +1,27 @@
+opam-version: "1.2"
+name:	      "factory"
+maintainer:   "Benedikt Schmidt <beschmi@gmail.com>"
+author:       "Benedikt Schmidt <beschmi@gmail.com>"
+version:      "0.0.1"
+
+build: [
+  ["./configure"]
+  [make]
+]
+build-test: [
+  ["./configure" "--enable-tests"]
+  [make "test"]
+]
+install: [make "install"]
+remove: [
+  ["ocamlfind" "remove" "factory"]
+  ["ocamlfind" "remove" "factory_bindings"]
+]
+depends: [
+  "ctypes"         {>= "0.4.0"}
+  "ctypes-foreign" {>= "0.4.0"}
+  "ocamlfind"      {build}
+  "oasis"          {build}
+  "ounit"          {test}
+]
+available: [ocaml-version >= "4.01.0"]

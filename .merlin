@@ -1,0 +1,7 @@
+S bindings
+S lib
+
+B _build/bindings
+B _build/lib
+
+PKG ctypes ctypes.foreign ctypes.stub ounit
