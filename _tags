@@ -1,0 +1,5 @@
+# OASIS_START
+# OASIS_STOP
+<*/*> : pkg_ctypes
+<*/*> : pkg_ctypes.foreign
+<*/*> : pkg_ctypes.stubs
