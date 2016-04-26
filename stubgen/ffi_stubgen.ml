@@ -12,5 +12,5 @@ let _ =
   | true, false ->
     Cstubs.write_ml Format.std_formatter ~prefix (module Ffi_bindings.Bindings)
   | false, true ->
-    print_endline "#include <factory_wrapper.h>";
+    print_endline "#include \"../lib/factory_wrapper.h\"";
     Cstubs.write_c Format.std_formatter ~prefix (module Ffi_bindings.Bindings)

@@ -12,9 +12,9 @@ Library factory
   FindlibName:      factory
   Modules:          Factory
   InternalModules:  Ffi_generated, Ffi_generated_types
-  CSources:         ffi_generated_stubs.c
+  CSources:         ffi_generated_stubs.c, factory_wrapper.c, factory_wrapper.h
   CCOpt:            -I $pkg_ctypes_stubs
-  CCLib:            -lfactory
+  CCLib:            -lfactory -lstdc++
   ByteOpt:          -warn-error +1..45
   NativeOpt:        -warn-error +1..45
   BuildDepends:     factory_bindings
@@ -31,6 +31,7 @@ Executable ffi_stubgen
   Install:        false
   Path:           stubgen
   MainIs:         ffi_stubgen.ml
+  CCLib:          -lfactory
   ByteOpt:        -warn-error +1..45
   NativeOpt:      -warn-error +1..45
   BuildDepends:   factory_bindings
@@ -48,6 +49,7 @@ Executable test_factory
   Path:           lib_test
   MainIs:         test_factory.ml
   CompiledObject: best
+  #CClib:          -lfactory
   ByteOpt:        -warn-error +1..45
   NativeOpt:      -warn-error +1..45
   BuildDepends:   factory, oUnit

@@ -1,5 +1,5 @@
 open OUnit
-open Lean
+open Factory
 
 module Fac = Factory
 module F  = Format

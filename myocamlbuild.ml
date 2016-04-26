@@ -44,6 +44,23 @@ let dispatch = function
       (fun _ _ ->
          Cmd(S[P stubgen; A"-c"; Sh">"; A"lib/ffi_generated_stubs.c"]));
 
+
+    (* If there are only C++ files, a simple 'CCOpt: -std=c++98 -x c++'
+       suffices, but we also have C files and must therefore change this
+       on a per-file basis. *)
+
+    rule ~insert:`top "cpp wrapper"
+      ~dep:"lib/factory_wrapper.c"
+      ~prod:"lib/factory_wrapper.o"
+     (fun _ _ ->
+         let env = BaseEnvLight.load () in
+         let cc = BaseEnvLight.var_get "bytecomp_c_compiler" env in
+         Cmd (S [Sh cc;
+                 A"-x"; A"c++";
+                 A"-c"; A"lib/factory_wrapper.c";
+                 A"-o"; A "lib/factory_wrapper.o"])
+      );
+
     flag ["c"; "compile"] & S[A"-I"; A"lib"; A"-package"; A"ctypes"]
 
   | _ ->
