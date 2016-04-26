@@ -14,7 +14,6 @@ struct DPolyList {
 
 typedef struct DPolyList Litem;
 
-
 void
 wrap_print(int, int, long**, long*);
 
@@ -23,6 +22,12 @@ wrap_new_expvecs(int, int);
 
 void
 wrap_free_expvecs(long**, int);
+
+void
+free_DistrPoly(DistrPoly*);
+
+void
+free_DPolyList(struct DPolyList*);
 
 long*
 wrap_new_coeffs(int);

@@ -3,7 +3,7 @@
 trap "rm -f factory_check" EXIT
 (c++ stubgen/factory_check.cc -lfactory -o factory_check 2>/dev/null \
     && ./factory_check 2>&1 >/dev/null) ||
-  echo "Package needs factory headers and library to be installed on your system."; exit 1
+  (echo "Package needs factory headers and library to be installed on your system."; exit 1)
 
 # OASIS_START
 # OASIS_STOP

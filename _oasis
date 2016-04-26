@@ -10,19 +10,19 @@ BuildTools:     ocamlbuild
 Library factory
   Path:             lib
   FindlibName:      factory
-  Modules:          Factory
-  InternalModules:  Ffi_generated, Ffi_generated_types
+  Modules:          Factory, Poly, PolyInterfaces
+  InternalModules:  Factory_generated, Factory_generated_types
   CSources:         ffi_generated_stubs.c, factory_wrapper.c, factory_wrapper.h
   CCOpt:            -I $pkg_ctypes_stubs
   CCLib:            -lfactory -lstdc++
   ByteOpt:          -warn-error +1..45
   NativeOpt:        -warn-error +1..45
-  BuildDepends:     factory_bindings
+  BuildDepends:     factory_bindings, batteries
 
 Library factory_bindings
   Install:          true
   Path:             bindings
-  Modules:          Ffi_bindings
+  Modules:          Factory_bindings
   ByteOpt:          -warn-error +1..45
   NativeOpt:        -warn-error +1..45
   BuildDepends:     ctypes, ctypes.stubs, ctypes.foreign

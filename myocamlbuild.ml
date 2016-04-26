@@ -9,9 +9,9 @@ let dispatch = function
 
     rule "generated ml"
       ~dep:stubgen
-      ~prod:"lib/ffi_generated.ml"
+      ~prod:"lib/factory_generated.ml"
       (fun _ _ ->
-         Cmd(S[P stubgen; A"-ml"; Sh">"; A"lib/ffi_generated.ml"]));
+         Cmd(S[P stubgen; A"-ml"; Sh">"; A"lib/factory_generated.ml"]));
 
     rule "generated-types c"
       ~dep:stubgen_types
@@ -34,9 +34,9 @@ let dispatch = function
 
     rule "generated-types ml"
       ~dep:stubgen_ml_types
-      ~prod:"lib/ffi_generated_types.ml"
+      ~prod:"lib/factory_generated_types.ml"
       (fun _ _ ->
-         Cmd (S [P stubgen_ml_types; Sh">>"; A"lib/ffi_generated_types.ml"]));
+         Cmd (S [P stubgen_ml_types; Sh">>"; A"lib/factory_generated_types.ml"]));
 
     rule "generated c"
       ~dep:stubgen

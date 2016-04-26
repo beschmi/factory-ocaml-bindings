@@ -5,6 +5,7 @@ author:       "Benedikt Schmidt <beschmi@gmail.com>"
 version:      "0.0.1"
 
 build: [
+  [oasis setup]
   ["./configure"]
   [make]
 ]
@@ -22,6 +23,7 @@ depends: [
   "ctypes-foreign" {>= "0.4.0"}
   "ocamlfind"      {build}
   "oasis"          {build}
+  "batteries"      {build}
   "ounit"          {test}
 ]
 available: [ocaml-version >= "4.01.0"]
